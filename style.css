@@ -1,0 +1,1339 @@
+/* СБРОС И БАЗОВЫЕ СТИЛИ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 1280px;
+  height: 800px;
+  margin: 0 auto;
+  background: #0b47ff;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: "Arial", sans-serif;
+  color: white;
+  position: relative;
+}
+
+/* 1. САМОЕ ПЕРВОЕ: КРОССОВКИ НА ЛИНИЯХ */
+.shoes-section {
+  position: relative;
+  height: 180px;
+  margin: 20px 0 0 0; /* В самом верху */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lines {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.line {
+  width: 1000px;
+  height: auto;
+  position: absolute;
+}
+
+.blue-line {
+  top: 10px;
+  animation: lineFloat 4s ease-in-out infinite;
+  z-index: 2;
+  filter: drop-shadow(0 0 10px rgba(0, 100, 255, 0.6));
+}
+
+.green-line {
+  top: 40px;
+  animation: lineFloat 5s ease-in-out infinite reverse;
+  z-index: 1;
+  filter: drop-shadow(0 0 10px rgba(0, 200, 100, 0.6));
+}
+
+@keyframes lineFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.shoes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.shoe {
+  position: absolute;
+  width: 160px;
+  height: auto;
+  top: 20px;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
+}
+
+.left-shoe {
+  left: -180px;
+  animation: moveRightShoe 8s linear infinite;
+}
+
+.right-shoe {
+  right: -180px;
+  animation: moveLeftShoe 8s linear infinite;
+}
+
+@keyframes moveRightShoe {
+  0% {
+    left: -180px;
+    transform: translateY(0) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-25px) rotate(-8deg);
+  }
+  40% {
+    transform: translateY(0) rotate(0deg);
+  }
+  60% {
+    transform: translateY(-25px) rotate(-8deg);
+  }
+  80% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    left: calc(100% - 100px);
+    transform: translateY(-25px) rotate(-8deg);
+  }
+}
+
+@keyframes moveLeftShoe {
+  0% {
+    right: -180px;
+    transform: translateY(0) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-25px) rotate(8deg);
+  }
+  40% {
+    transform: translateY(0) rotate(0deg);
+  }
+  60% {
+    transform: translateY(-25px) rotate(8deg);
+  }
+  80% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    right: calc(100% - 100px);
+    transform: translateY(-25px) rotate(8deg);
+  }
+}
+
+/* Тень под кроссовками */
+.shoe::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  width: 60px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  filter: blur(6px);
+  animation: shoeShadow 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes shoeShadow {
+  0% {
+    width: 50px;
+    opacity: 0.3;
+  }
+  100% {
+    width: 70px;
+    opacity: 0.5;
+  }
+}
+
+/* 2. ПОТОМ KINETICA С ВИХРЯМИ */
+.header {
+  position: relative;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0 20px 0;
+}
+
+.main-title {
+  font-size: 72px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  color: white;
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.8);
+  z-index: 10;
+  position: relative;
+}
+
+.vortex {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  opacity: 0.7;
+  z-index: 5;
+}
+
+.vortex img {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.6));
+}
+
+.vortex-left {
+  left: 180px;
+  top: 40px;
+  animation: vortexSpin 10s linear infinite;
+}
+
+.vortex-right {
+  right: 220px;
+  top: 60px;
+  animation: vortexSpin 12s linear infinite reverse;
+}
+
+.vortex-top-right {
+  right: 150px;
+  top: 20px;
+  width: 60px;
+  height: 60px;
+  animation: vortexSpin 15s linear infinite;
+}
+
+@keyframes vortexSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 3. "ДВИЖЕНИЕ = ЭНЕРГИЯ" */
+.energy-section {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.typing-energy {
+  font-family: "Courier New", monospace;
+  font-size: 36px;
+  font-weight: 900;
+  color: #0048cc;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 30px;
+  border-radius: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #00e5ff;
+  animation: typingEnergy 4s steps(25) infinite alternate,
+    blinkCursor 0.7s step-end infinite;
+}
+
+@keyframes typingEnergy {
+  0% {
+    width: 0;
+  }
+  50%,
+  100% {
+    width: 550px;
+  }
+}
+
+@keyframes blinkCursor {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #00e5ff;
+  }
+}
+
+/* Остальные стили оставляем как в предыдущем CSS файле (с 4 по 11) */
+/* 4. КОЛЛАЖ ИЗ 6 ЭЛЕМЕНТОВ */
+.collage-section {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.collage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 30px;
+  width: 800px;
+  height: 250px;
+}
+
+.collage-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.collage-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+}
+
+/* Анимации для элементов коллажа */
+.collage-item:nth-child(1) {
+  animation: floatItem 3s ease-in-out infinite;
+}
+.collage-item:nth-child(2) {
+  animation: bounceBall 2s ease-in-out infinite;
+}
+.collage-item:nth-child(3) {
+  animation: rotateStars 4s linear infinite;
+}
+.collage-item:nth-child(4) {
+  animation: smileyPulse 2s ease-in-out infinite;
+}
+.collage-item:nth-child(5) {
+  animation: springBounce 1.5s ease-in-out infinite;
+}
+.collage-item:nth-child(6) {
+  animation: sneakerTilt 3s ease-in-out infinite;
+}
+
+@keyframes floatItem {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes bounceBall {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.1);
+  }
+}
+
+@keyframes rotateStars {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes smileyPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes springBounce {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.7);
+  }
+}
+
+@keyframes sneakerTilt {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+/* Игроки на площадке */
+.players {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.player {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: white;
+  border-radius: 50%;
+}
+
+.player:nth-child(1) {
+  top: 40px;
+  left: 40px;
+  animation: playerMove1 4s linear infinite;
+}
+
+.player:nth-child(2) {
+  bottom: 40px;
+  right: 40px;
+  animation: playerMove2 4s linear infinite;
+}
+
+@keyframes playerMove1 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(30px, 20px);
+  }
+  50% {
+    transform: translate(20px, 30px);
+  }
+  75% {
+    transform: translate(0, 20px);
+  }
+}
+
+@keyframes playerMove2 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-30px, -20px);
+  }
+  50% {
+    transform: translate(-20px, -30px);
+  }
+  75% {
+    transform: translate(0, -20px);
+  }
+}
+
+/* Звезды */
+.stars {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.star {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+}
+
+.red-star {
+  top: 20px;
+  left: 20px;
+  animation: starPulse 2s ease-in-out infinite;
+}
+
+.orange-star {
+  bottom: 20px;
+  right: 20px;
+  animation: starPulse 2.5s ease-in-out infinite 0.5s;
+}
+
+@keyframes starPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+/* Эффекты */
+.sparkle,
+.spring-effect,
+.sneaker-spark,
+.ball-shadow {
+  position: absolute;
+  z-index: 1;
+}
+
+.sparkle {
+  width: 15px;
+  height: 15px;
+  background: #ffd93d;
+  border-radius: 50%;
+  top: 20px;
+  right: 20px;
+  animation: sparkleFlash 1.5s ease-in-out infinite;
+}
+
+.spring-effect {
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, transparent, #00e5ff, transparent);
+  bottom: 10px;
+  animation: springMove 2s linear infinite;
+}
+
+.sneaker-spark {
+  width: 20px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ffd93d, transparent);
+  top: 30px;
+  right: -10px;
+  animation: sparkEmit 2s ease-in-out infinite;
+}
+
+.ball-shadow {
+  width: 60px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  bottom: -15px;
+  filter: blur(5px);
+  animation: shadowBounce 2s ease-in-out infinite;
+}
+
+@keyframes sparkleFlash {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes springMove {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes sparkEmit {
+  0% {
+    transform: translateX(0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(10px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(20px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes shadowBounce {
+  0%,
+  100% {
+    width: 50px;
+    opacity: 0.3;
+  }
+  50% {
+    width: 70px;
+    opacity: 0.5;
+  }
+}
+
+/* 5. "ЗАНИМАЙСЯ ЛЮБОЙ АКТИВНОСТЬЮ" */
+.activity-section {
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.activity-title {
+  font-size: 28px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: white;
+  background: rgba(0, 71, 255, 0.9);
+  padding: 12px 35px;
+  border-radius: 8px;
+  animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 6. ГЕПАРД В РАМКЕ + ТЕКСТ */
+.cheetah-section {
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 100px;
+  margin: 20px 0;
+}
+
+.text-block {
+  width: 500px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+}
+
+.typing-text {
+  font-size: 22px;
+  line-height: 1.5;
+  color: white;
+  border-right: 3px solid #00e5ff;
+  padding-right: 5px;
+  animation: blinkCursor 0.7s step-end infinite;
+}
+
+.cheetah-block {
+  width: 350px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cheetah-frame {
+  width: 100%;
+  height: 100%;
+  border: 4px solid #00a8ff;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 25px rgba(0, 168, 255, 0.4);
+  overflow: hidden;
+}
+
+.cheetah-img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  animation: cheetahFloat 4s ease-in-out infinite;
+}
+
+@keyframes cheetahFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.02);
+  }
+}
+
+/* 7. 3 ОДЕЖДЫ */
+.outfits-section {
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.outfits-row {
+  display: flex;
+  gap: 50px;
+}
+
+.outfit {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.outfit img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+}
+
+.outfit:nth-child(1) img {
+  animation: outfitFloat 5s ease-in-out infinite;
+}
+
+.outfit:nth-child(2) img {
+  animation: outfitFloat 5s ease-in-out infinite 0.5s;
+}
+
+.outfit:nth-child(3) img {
+  animation: outfitFloat 5s ease-in-out infinite 1s;
+}
+
+@keyframes outfitFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* 8. ЛЕТАЮЩИЕ ГОЛОВЫ */
+.heads-section {
+  height: 60px;
+  position: relative;
+  margin: 30px 0;
+  overflow: hidden;
+}
+
+.heads-container {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  animation: moveHeads 20s linear infinite;
+}
+
+.flying-head {
+  width: 45px;
+  height: 45px;
+  margin: 0 40px;
+  opacity: 0.8;
+}
+
+.flying-head img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.7));
+}
+
+.head1 img {
+  animation: headBob 2s ease-in-out infinite;
+}
+.head2 img {
+  animation: headBob 2.5s ease-in-out infinite 0.3s;
+}
+.head3 img {
+  animation: headBob 3s ease-in-out infinite 0.6s;
+}
+.head4 img {
+  animation: headBob 3.5s ease-in-out infinite 0.9s;
+}
+
+@keyframes moveHeads {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes headBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* 9. ВОЛАНЧИК */
+.shuttlecock {
+  position: absolute;
+  top: 400px;
+  right: 100px;
+  width: 70px;
+  height: 70px;
+  z-index: 100;
+}
+
+.shuttlecock-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: flyShuttlecock 6s linear infinite;
+}
+
+@keyframes flyShuttlecock {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-40px, -30px) rotate(90deg);
+  }
+  50% {
+    transform: translate(-80px, 0) rotate(180deg);
+  }
+  75% {
+    transform: translate(-40px, 30px) rotate(270deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+/* 10. ОГОНЬ */
+.fire-section {
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 50;
+}
+
+.fire-container {
+  width: 350px;
+  height: 120px;
+}
+
+.fire-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: fireRise 2s ease-in-out infinite;
+}
+
+@keyframes fireRise {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scaleY(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.1);
+  }
+}
+
+/* 11. ПОДВАЛ */
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.footer-content {
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.footer-content .name {
+  font-weight: bold;
+}
+
+.footer-content .school {
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* ПРОКРУТКА */
+body {
+  overflow-y: auto;
+  height: auto;
+  min-height: 800px;
+}
+/* АДАПТИВ ДЛЯ IPAD PORTRAIT (768×1024) */
+@media (max-width: 768px) and (orientation: portrait) {
+  body {
+    width: 768px;
+    height: 1024px;
+    overflow-x: hidden;
+  }
+
+  /* 1. КРОССОВКИ НА ЛИНИЯХ */
+  .shoes-section {
+    height: 140px;
+    margin: 15px 0 0 0;
+  }
+
+  .lines {
+    height: 80px;
+  }
+
+  .line {
+    width: 650px;
+  }
+
+  .blue-line {
+    top: 5px;
+  }
+
+  .green-line {
+    top: 30px;
+  }
+
+  .shoe {
+    width: 120px;
+    top: 10px;
+  }
+
+  .left-shoe {
+    left: -140px;
+  }
+
+  .right-shoe {
+    right: -140px;
+  }
+
+  @keyframes moveRightShoe {
+    100% {
+      left: calc(100% - 80px);
+    }
+  }
+
+  @keyframes moveLeftShoe {
+    100% {
+      right: calc(100% - 80px);
+    }
+  }
+
+  /* 2. KINETICA С ВИХРЯМИ */
+  .header {
+    height: 140px;
+    margin: 5px 0 15px 0;
+  }
+
+  .main-title {
+    font-size: 48px;
+    letter-spacing: 5px;
+  }
+
+  .vortex {
+    width: 60px;
+    height: 60px;
+  }
+
+  .vortex-left {
+    left: 100px;
+    top: 30px;
+  }
+
+  .vortex-right {
+    right: 120px;
+    top: 40px;
+  }
+
+  .vortex-top-right {
+    right: 80px;
+    top: 15px;
+    width: 45px;
+    height: 45px;
+  }
+
+  /* 3. "ДВИЖЕНИЕ = ЭНЕРГИЯ" */
+  .energy-section {
+    height: 60px;
+    margin: 15px 0;
+  }
+
+  .typing-energy {
+    font-size: 24px;
+    padding: 8px 20px;
+    border-radius: 6px;
+  }
+
+  @keyframes typingEnergy {
+    0% {
+      width: 0;
+    }
+    50%,
+    100% {
+      width: 400px;
+    }
+  }
+
+  /* 4. КОЛЛАЖ ИЗ 6 ЭЛЕМЕНТОВ */
+  .collage-section {
+    height: 220px;
+    margin: 15px 0;
+  }
+
+  .collage-grid {
+    width: 550px;
+    height: 180px;
+    gap: 20px;
+  }
+
+  .collage-img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .collage-item {
+    border-radius: 8px;
+  }
+
+  /* Игроки на площадке */
+  .player {
+    width: 12px;
+    height: 12px;
+  }
+
+  .player:nth-child(1) {
+    top: 30px;
+    left: 30px;
+  }
+
+  .player:nth-child(2) {
+    bottom: 30px;
+    right: 30px;
+  }
+
+  /* Звезды */
+  .stars {
+    width: 70px;
+    height: 70px;
+  }
+
+  .star {
+    width: 30px;
+    height: 30px;
+  }
+
+  .red-star {
+    top: 15px;
+    left: 15px;
+  }
+
+  .orange-star {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  /* Эффекты */
+  .sparkle {
+    width: 12px;
+    height: 12px;
+    top: 15px;
+    right: 15px;
+  }
+
+  .sneaker-spark {
+    width: 15px;
+    height: 2px;
+    top: 20px;
+    right: -8px;
+  }
+
+  .ball-shadow {
+    width: 45px;
+    height: 8px;
+    bottom: -12px;
+  }
+
+  /* 5. "ЗАНИМАЙСЯ ЛЮБОЙ АКТИВНОСТЬЮ" */
+  .activity-section {
+    height: 60px;
+    margin: 20px 0;
+  }
+
+  .activity-title {
+    font-size: 20px;
+    padding: 10px 25px;
+    border-radius: 6px;
+    letter-spacing: 1.5px;
+  }
+
+  /* 6. ГЕПАРД В РАМКЕ + ТЕКСТ */
+  .cheetah-section {
+    height: 160px;
+    padding: 0 40px;
+    margin: 15px 0;
+    flex-direction: column;
+  }
+
+  .text-block {
+    width: 100%;
+    height: 80px;
+    padding-right: 0;
+    margin-bottom: 15px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .typing-text {
+    font-size: 18px;
+    line-height: 1.3;
+    text-align: center;
+    padding-right: 0;
+    border-right: none;
+    animation: none;
+  }
+
+  .cheetah-block {
+    width: 280px;
+    height: 140px;
+  }
+
+  .cheetah-frame {
+    width: 100%;
+    height: 100%;
+    border-width: 3px;
+    border-radius: 10px;
+  }
+
+  .cheetah-img {
+    width: 85%;
+    height: 85%;
+  }
+
+  /* Убираем курсор на мобильных */
+  .typing-text {
+    border-right: none !important;
+    animation: none !important;
+  }
+
+  /* 7. 3 ОДЕЖДЫ */
+  .outfits-section {
+    height: 120px;
+    margin: 15px 0;
+  }
+
+  .outfits-row {
+    gap: 30px;
+  }
+
+  .outfit {
+    width: 110px;
+    height: 110px;
+    border-radius: 8px;
+  }
+
+  .outfit img {
+    width: 85%;
+    height: 85%;
+  }
+
+  /* 8. ЛЕТАЮЩИЕ ГОЛОВЫ */
+  .heads-section {
+    height: 50px;
+    margin: 20px 0;
+  }
+
+  .heads-container {
+    animation: moveHeads 15s linear infinite;
+  }
+
+  .flying-head {
+    width: 35px;
+    height: 35px;
+    margin: 0 25px;
+  }
+
+  /* 9. ВОЛАНЧИК */
+  .shuttlecock {
+    top: 350px;
+    right: 60px;
+    width: 50px;
+    height: 50px;
+  }
+
+  @keyframes flyShuttlecock {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(-25px, -20px) rotate(90deg);
+    }
+    50% {
+      transform: translate(-50px, 0) rotate(180deg);
+    }
+    75% {
+      transform: translate(-25px, 20px) rotate(270deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(360deg);
+    }
+  }
+
+  /* 10. ОГОНЬ */
+  .fire-section {
+    bottom: 100px;
+    height: 100px;
+  }
+
+  .fire-container {
+    width: 250px;
+    height: 100px;
+  }
+
+  /* 11. ПОДВАЛ */
+  .footer {
+    height: 45px;
+  }
+
+  .footer-content {
+    font-size: 12px;
+  }
+
+  /* ОБЩИЕ КОРРЕКТИРОВКИ АНИМАЦИЙ */
+  @keyframes floatItem {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes bounceBall {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-12px) scale(1.1);
+    }
+  }
+
+  @keyframes smileyPulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+  }
+
+  @keyframes outfitFloat {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  @keyframes cheetahFloat {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-8px) scale(1.02);
+    }
+  }
+
+  @keyframes headBob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  /* Отключаем сложные анимации на мобильных для производительности */
+  .shuttlecock {
+    animation-play-state: running;
+  }
+
+  /* Улучшаем скроллинг */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Дополнительная адаптация для очень маленьких экранов */
+@media (max-width: 400px) {
+  body {
+    width: 100%;
+    max-width: 768px;
+  }
+
+  .line {
+    width: 350px;
+  }
+
+  .collage-grid {
+    width: 350px;
+    gap: 10px;
+  }
+
+  .typing-energy {
+    font-size: 20px;
+  }
+
+  @keyframes typingEnergy {
+    0% {
+      width: 0;
+    }
+    50%,
+    100% {
+      width: 320px;
+    }
+  }
+}
